@@ -93,6 +93,17 @@ async function run1() {
 run1();
 ```
 
+Get Search
+```javascript
+const WPAPI = require("wp-json");
+async function run1() {
+  const wpJson = new WPAPI("postnews.com.kh");
+  const res = await wpJson.search("search text", 1, 20).then(res => { return res; });
+};
+
+run1();
+```
+
 ## គោលបំណង
 ការងារមួយនេះគឺខ្ញុំចង់ចែករំលែកការងារដែលធ្លាប់បានធ្វើហើយ និងសាកបង្កើតជា dependency មួយឡើង និងប្រើប្រាស់ github។ 
 

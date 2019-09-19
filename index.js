@@ -1,49 +1,73 @@
 const got = require('got');
+const queryString = require('query-string');
 
 class WPAPI {
   constructor(domain, obj = { per_page: 10, api: "wp-json" }) {
     this.domain = domain;
-    this.per_page = obj.per_page;
+    this.page = 1;
+    this.per_page = obj.per_page || 10;
     switch (obj.api) {
       case "?rest_route=":
+      case "query":
         obj.api = "?rest_route=";
+        this.api = "?rest_route=";
         break;
       default:
         obj.api = "wp-json";
+        this.api = "wp-json";
     }
-    this.api = `https://${domain}/${obj.api}/wp/v2/posts`
+    this._api = `https://${domain}/${obj.api}/wp/v2/posts`
   }
 
   async recent(page, per_page) {
-    page = page || 1;
-    per_page = per_page || this.per_page;
-    let api = `${this.api}?posts&page=${page}&per_page=${per_page}`;
-    return await this._getRequest(api);
+    const query = {
+      page: page || this.page,
+      per_page: per_page || this.per_page
+    };
+    return await this._getRequest(query);
   }
 
   async category(id, page, per_page) {
-    page = page || 1;
-    per_page = per_page || this.per_page;
-    let api = `${this.api}?posts&categories=${id}&page=${page}&per_page=${per_page}`;
-    return await this._getRequest(api);
-  }
-
-  async post(id) {
-    return await this._getRequest(`${this.api}?posts/${id}`);
+    const query = {
+      categories: id,
+      page: page || this.page,
+      per_page: per_page || this.per_page
+    };
+    return await this._getRequest(query);
   }
 
   async tags(id, page, per_page) {
-    page = page || 1;
-    per_page = per_page || this.per_page;
-    let api = `${this.api}?posts&tags=${id}&page=${page}&per_page=${per_page}`;
-    return await this._getRequest(api);
+    const query = {
+      tags: id,
+      page: page || this.page,
+      per_page: per_page || this.per_page
+    };
+    return await this._getRequest(query);
   }
 
-  async _getRequest(url, cb) {
-    return got(url, { responseType: "json" })
+  async search(str, page, per_page) {
+    const query = {
+      search: str,
+      page: page || this.page,
+      per_page: per_page || this.per_page
+    };
+    return await this._getRequest(query);
+  }
+
+  async post(id) {
+    return await this._getRequest(id);
+  }
+
+  async _getRequest(action, cb) {
+    if (this.api === "wp-json")
+      action = typeof action === "object" ? "?" + queryString.stringify(action) : action;
+    else
+      action = typeof action === "object" ? "&" + queryString.stringify(action) : action;
+    const api = `${this._api}/${action}`;
+    return got(api, { json: true })
       .then((res) => {
-        if (res.statusCode != 200) throw new WPError(body);
-        return { status: true, data: JSON.parse(res.body) };
+        if (res.statusCode != 200) throw new WPError(res.statusCode);
+        return { status: true, data: res.body };
       })
       .catch(err => {
         return { status: false, data: err };
