@@ -1,6 +1,6 @@
 {
   "name": "wp-json",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WP-JSON API",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,12 @@
   "keywords": [
     "wp-json",
     "wordpress",
-    "api"
+    "api",
+    "wordpress-rest-api",
+    "wordpress-rest",
+    "react-native",
+    "news",
+    "postnews"
   ],
   "bugs": {
     "url": "https://github.com/kh71/wp-json/issues"

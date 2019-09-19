@@ -29,3 +29,71 @@ return {status: true, data: []}
 
 - counter (id) ស្រាប់បង្កើតចំនួនអ្នកបានអានរួច View ទៅលើ Custom Field: post_views_count
 ប៉ុន្តែការប្រើប្រាស់អាចប្រើបានជាមួយ td_ajax_update_views របស់ WP Theme Newspaper ប៉ុណ្ណោះ
+
+## Installation
+
+Go to your app's main directory and run:
+
+```
+npm install wp-json
+```
+
+Get Recent Post
+```javascript
+const WPAPI = require("wp-json");
+async function run1() {
+  const wpJson = new WPAPI("postnews.com.kh");
+  const res = await wpJson.recent(1, 20).then(res => { return res; });
+};
+
+run1();
+```
+
+Get Category
+```javascript
+const WPAPI = require("wp-json");
+async function run1() {
+  const wpJson = new WPAPI("postnews.com.kh");
+  const res = await wpJson.category(8, 1, 20).then(res => { return res; });
+};
+
+run1();
+```
+
+Get Post ID
+```javascript
+const WPAPI = require("wp-json");
+async function run1() {
+  const wpJson = new WPAPI("postnews.com.kh");
+  const res = await wpJson.post(359619).then(res => { return res; });
+};
+
+run1();
+```
+
+Get Post by Tag
+```javascript
+const WPAPI = require("wp-json");
+async function run1() {
+  const wpJson = new WPAPI("postnews.com.kh");
+  const res = await wpJson.post("429", 1, 20).then(res => { return res; });
+};
+
+run1();
+```
+
+Get Post by multi Tags
+```javascript
+const WPAPI = require("wp-json");
+async function run1() {
+  const wpJson = new WPAPI("postnews.com.kh");
+  const res = await wpJson.post("429,618", 1, 20).then(res => { return res; });
+};
+
+run1();
+```
+
+## គោលបំណង
+ការងារមួយនេះគឺខ្ញុំចង់ចែករំលែកការងារដែលធ្លាប់បានធ្វើហើយ និងសាកបង្កើតជា dependency មួយឡើង និងប្រើប្រាស់ github។ 
+
+ការប្រើប្រាស់នៅក្នុង github ខ្ញុំមិនទាន់ចេះប្រើទេ ហើយក៏ចេះតែ commit ទៅតាមចិត្តចង់ ឬពេលវេលា។ ហេតុនេះហើយបើខ្ញុំសរសេរមានបញ្ហា បើមាននោះសូមជួយកែសម្រួលផង
