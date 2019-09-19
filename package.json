@@ -1,14 +1,31 @@
 {
   "name": "wp-json",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "WP-JSON API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/posts.js"
   },
-  "author": "",
+  "author": "Kaing Dara",
   "license": "ISC",
   "dependencies": {
     "got": "^9.6.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kh71/wp-json.git"
+  },
+  "keywords": [
+    "wp-json",
+    "wordpress",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/kh71/wp-json/issues"
+  },
+  "homepage": "https://github.com/kh71/wp-json#readme"
 }
