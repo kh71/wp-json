@@ -1,8 +1,10 @@
 const WPAPI = require("../index.js");
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
-  const res = await wpJson.tags("815,576", 1, 1).then(res => { return res; });
-  console.log(res);
+  const count = await wpJson.counter(485979).then(res => { return res; });
+  console.log("Post 485979: ", res);
+  const res = await wpJson.post(485979).then(res => { return res; });
+  console.log("Update Count:", count);
 };
 
 run1();
