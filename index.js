@@ -1,38 +1,45 @@
 const got = require('got');
 
 class WPAPI {
-  constructor(domain, per_page = 10) {
+  constructor(domain, obj = { per_page: 10, api: "wp-json" }) {
     this.domain = domain;
-    this.per_page = per_page;
-    this.api = `https://${domain}/wp-json/wp/v2/posts`
+    this.per_page = obj.per_page;
+    switch (obj.api) {
+      case "?rest_route=":
+        obj.api = "?rest_route=";
+        break;
+      default:
+        obj.api = "wp-json";
+    }
+    this.api = `https://${domain}/${obj.api}/wp/v2/posts`
   }
 
   async recent(page, per_page) {
     page = page || 1;
     per_page = per_page || this.per_page;
     let api = `${this.api}?posts&page=${page}&per_page=${per_page}`;
-    return await this.getRequest(api);
+    return await this._getRequest(api);
   }
 
   async category(id, page, per_page) {
     page = page || 1;
     per_page = per_page || this.per_page;
     let api = `${this.api}?posts&categories=${id}&page=${page}&per_page=${per_page}`;
-    return await this.getRequest(api);
+    return await this._getRequest(api);
   }
 
   async post(id) {
-    return await this.getRequest(`${this.api}?posts/${id}`);
+    return await this._getRequest(`${this.api}?posts/${id}`);
   }
 
   async tags(id, page, per_page) {
     page = page || 1;
     per_page = per_page || this.per_page;
     let api = `${this.api}?posts&tags=${id}&page=${page}&per_page=${per_page}`;
-    return await this.getRequest(api);
+    return await this._getRequest(api);
   }
 
-  async getRequest(url, cb) {
+  async _getRequest(url, cb) {
     return got(url, { responseType: "json" })
       .then((res) => {
         if (res.statusCode != 200) throw new WPError(body);

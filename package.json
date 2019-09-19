@@ -10,5 +10,22 @@
   "license": "ISC",
   "dependencies": {
     "got": "^9.6.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kh71/wp-json.git"
+  },
+  "keywords": [
+    "wp-json",
+    "wordpress",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/kh71/wp-json/issues"
+  },
+  "homepage": "https://github.com/kh71/wp-json#readme"
 }
