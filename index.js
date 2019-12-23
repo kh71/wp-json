@@ -1,7 +1,9 @@
+'use strict';
+
 const got = require('got');
 const queryString = require('query-string');
 
-class WPAPI {
+export default class WPAPI {
   constructor(domain, obj = { per_page: 10, api: "wp-json" }) {
     this.domain = domain;
     this.page = 1;
@@ -92,8 +94,6 @@ class WPAPI {
       .catch(err => false);
   }
 }
-
-module.exports = WPAPI;
 
 class WPError extends Error {
   constructor(err) {

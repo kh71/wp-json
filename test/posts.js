@@ -1,11 +1,9 @@
-const WPAPI = require("../index.js");
+// import WPAPI from "../dist";
+var WPAPI = require("../dist/index.js");
 async function run1() {
-  const wpJson = new WPAPI("postnews.com.kh");
-  let res = await wpJson.search("ទួលគោគ").then(res => { return res; });
-  await wpJson.recent(1, 2).then(res => { return res; });
-  console.log("Post 91246: ", res);
-  // const count = await wpJson.counter(91246).then(res => { return res; });
-  // console.log("Update Count:", count);
+  const wpJson = new WPAPI("postnews.com.kh", );
+  const res = await wpJson.recent(1, 20).then(res => { return res; });
+  console.log(res);
 };
 
 run1();
