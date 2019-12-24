@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "module": "CommonJs",
+    "moduleResolution": "node",
+    "pretty": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "target": "es2019",
+    "lib": [
+      "es2019",
+    ],
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": [
+        "*"
+      ],
+      "@controllers/*": [
+        "controllers/*"
+      ],
+      "@helpers/*": [
+        "helpers/*"
+      ],
+      "@library/*": [
+        "library/*"
+      ],
+      "@interfaces/*": [
+        "interfaces/*"
+      ],
+      "@middlewares/*": [
+        "middlewares/*"
+      ],
+      "@models/*": [
+        "models/*"
+      ],
+      "@routes/*": [
+        "routes/*"
+      ]
+    }
+  },
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true,
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
