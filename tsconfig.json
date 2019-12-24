@@ -6,38 +6,15 @@
     "declaration": true,
     "removeComments": true,
     "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
     "target": "es2019",
     "lib": [
       "es2019",
     ],
     "outDir": "./dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@app/*": [
-        "*"
-      ],
-      "@controllers/*": [
-        "controllers/*"
-      ],
-      "@helpers/*": [
-        "helpers/*"
-      ],
-      "@library/*": [
-        "library/*"
-      ],
-      "@interfaces/*": [
-        "interfaces/*"
-      ],
-      "@middlewares/*": [
-        "middlewares/*"
-      ],
-      "@models/*": [
-        "models/*"
-      ],
-      "@routes/*": [
-        "routes/*"
-      ]
-    }
+    "baseUrl": "./src"
   },
   "esModuleInterop": true,
   "allowSyntheticDefaultImports": true,
@@ -46,6 +23,7 @@
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "dist"
   ]
 }
