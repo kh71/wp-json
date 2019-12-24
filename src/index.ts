@@ -25,7 +25,7 @@ class WPAPI {
     this._api = `https://${this.domain}/${this.api}/wp/v2/posts`;
   }
 
-  async recent(page: number, per_page: number) {
+  async recent(page: number, per_page: number = this.per_page) {
     const query = {
       page: page || this.page,
       per_page: per_page || this.per_page
@@ -33,25 +33,25 @@ class WPAPI {
     return await this._getRequest(query);
   }
 
-  async category(id: number, page: number, per_page: number) {
+  async category(id: number, page: number, per_page: number = this.per_page) {
     const query = {
       categories: id,
       page: page || this.page,
-      per_page: per_page || this.per_page
+      per_page: per_page
     };
     return await this._getRequest(query);
   }
 
-  async tags(id: number, page: number, per_page: number) {
+  async tags(id: number, page: number, per_page: number = this.per_page) {
     const query = {
       tags: id,
       page: page || this.page,
-      per_page: per_page || this.per_page
+      per_page: per_page
     };
     return await this._getRequest(query);
   }
 
-  async search(str: string, page: string, per_page: string) {
+  async search(str: string, page: string, per_page: number = this.per_page) {
     const query = {
       search: str,
       page: page || this.page,
