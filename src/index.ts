@@ -9,7 +9,7 @@ class WPAPI {
   private per_page: number = 10;
   private api: string;
   private _api: string;
-  constructor(domain: string, per_page: 10, api: string = "wp-json") {
+  constructor(domain: string, per_page: number = 10, api: string = "wp-json") {
     this.domain = domain;
     this.per_page = per_page || 10;
     switch (api) {
