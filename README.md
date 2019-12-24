@@ -35,7 +35,7 @@ return {status: true, data: []}
 Go to your app's main directory and run:
 
 ```
-npm install wp-json
+npm install wp-json -S
 ```
 
 Get Recent Post

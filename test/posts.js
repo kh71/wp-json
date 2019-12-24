@@ -2,7 +2,7 @@
 var WPAPI = require("../dist/index.js");
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh", );
-  const res = await wpJson.recent(1, 20).then(res => { return res; });
+  const res = await wpJson.recent( 20).then(res => { return res; });
   console.log(res);
 };
 
