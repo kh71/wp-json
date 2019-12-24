@@ -104,4 +104,5 @@ class WPAPI {
   }
 }
 
+export default WPAPI;
 module.exports = WPAPI;
