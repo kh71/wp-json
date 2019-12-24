@@ -3,13 +3,13 @@
 import { get, post } from "request-promise";
 import * as queryString from "query-string";
 
-class WPAPI {
+export default class WPAPI {
   private domain: string = "";
   private page: number = 1;
   private per_page: number = 10;
   private api: string;
   private _api: string;
-  constructor(domain: string, per_page: 10, api: string = "wp-json") {
+  constructor(domain: string, per_page: number = 10, api: string = "wp-json") {
     this.domain = domain;
     this.per_page = per_page || 10;
     switch (api) {
@@ -25,7 +25,7 @@ class WPAPI {
     this._api = `https://${this.domain}/${this.api}/wp/v2/posts`;
   }
 
-  async recent(page: number, per_page: number) {
+  async recent(page: number, per_page: number = this.per_page) {
     const query = {
       page: page || this.page,
       per_page: per_page || this.per_page
@@ -33,25 +33,25 @@ class WPAPI {
     return await this._getRequest(query);
   }
 
-  async category(id: number, page: number, per_page: number) {
+  async category(id: number, page: number, per_page: number = this.per_page) {
     const query = {
       categories: id,
       page: page || this.page,
-      per_page: per_page || this.per_page
+      per_page: per_page
     };
     return await this._getRequest(query);
   }
 
-  async tags(id: number, page: number, per_page: number) {
+  async tags(id: number, page: number, per_page: number = this.per_page) {
     const query = {
       tags: id,
       page: page || this.page,
-      per_page: per_page || this.per_page
+      per_page: per_page
     };
     return await this._getRequest(query);
   }
 
-  async search(str: string, page: string, per_page: string) {
+  async search(str: string, page: string, per_page: number = this.per_page) {
     const query = {
       search: str,
       page: page || this.page,
@@ -103,5 +103,3 @@ class WPAPI {
       .catch((err: any) => false);
   }
 }
-
-module.exports = WPAPI;

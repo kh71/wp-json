@@ -3,40 +3,20 @@
     "module": "CommonJs",
     "moduleResolution": "node",
     "pretty": true,
+    "declaration": true,
     "removeComments": true,
     "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
     "target": "es2019",
     "lib": [
       "es2019",
     ],
+    "strict": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@app/*": [
-        "*"
-      ],
-      "@controllers/*": [
-        "controllers/*"
-      ],
-      "@helpers/*": [
-        "helpers/*"
-      ],
-      "@library/*": [
-        "library/*"
-      ],
-      "@interfaces/*": [
-        "interfaces/*"
-      ],
-      "@middlewares/*": [
-        "middlewares/*"
-      ],
-      "@models/*": [
-        "models/*"
-      ],
-      "@routes/*": [
-        "routes/*"
-      ]
-    }
+    "rootDir": "src",
+    "baseUrl": "./src"
   },
   "esModuleInterop": true,
   "allowSyntheticDefaultImports": true,
@@ -45,6 +25,7 @@
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "dist"
   ]
 }
