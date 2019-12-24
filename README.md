@@ -1,7 +1,6 @@
 # wp-json
 Wordpress wp-json v2
 
-
 អ្វីដែលបានរៀបចំ និងធ្វើឡើង
 - Constructor [domain, obj]. obj មានទិន្ន័យដូចជា
 per_page ត្រូវបានកំណត់ចំនួនស្រាប់ 10
@@ -38,9 +37,11 @@ Go to your app's main directory and run:
 npm install wp-json -S
 ```
 
+# ES6
+
 Get Recent Post
 ```javascript
-const WPAPI = require("wp-json");
+import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
   const res = await wpJson.recent(1, 20).then(res => { return res; });
@@ -51,7 +52,7 @@ run1();
 
 Get Category
 ```javascript
-const WPAPI = require("wp-json");
+import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
   const res = await wpJson.category(8, 1, 20).then(res => { return res; });
@@ -62,7 +63,7 @@ run1();
 
 Get Post ID
 ```javascript
-const WPAPI = require("wp-json");
+import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
   const res = await wpJson.post(359619).then(res => { return res; });
@@ -73,7 +74,7 @@ run1();
 
 Get Post by Tag
 ```javascript
-const WPAPI = require("wp-json");
+import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
   const res = await wpJson.post("429", 1, 20).then(res => { return res; });
@@ -84,7 +85,7 @@ run1();
 
 Get Post by multi Tags
 ```javascript
-const WPAPI = require("wp-json");
+import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
   const res = await wpJson.post("429,618", 1, 20).then(res => { return res; });
@@ -95,7 +96,7 @@ run1();
 
 Get Search
 ```javascript
-const WPAPI = require("wp-json");
+import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
   const res = await wpJson.search("search text", 1, 20).then(res => { return res; });

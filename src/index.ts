@@ -3,7 +3,7 @@
 import { get, post } from "request-promise";
 import * as queryString from "query-string";
 
-class WPAPI {
+export default class WPAPI {
   private domain: string = "";
   private page: number = 1;
   private per_page: number = 10;
@@ -103,6 +103,3 @@ class WPAPI {
       .catch((err: any) => false);
   }
 }
-
-export = WPAPI;
-// module.exports = WPAPI;
