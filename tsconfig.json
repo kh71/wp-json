@@ -3,6 +3,7 @@
     "module": "CommonJs",
     "moduleResolution": "node",
     "pretty": true,
+    "declaration": true,
     "removeComments": true,
     "resolveJsonModule": true,
     "target": "es2019",
