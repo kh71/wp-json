@@ -4,6 +4,7 @@ Wordpress wp-json v2
 អ្វីដែលបានរៀបចំ និងធ្វើឡើង
 - Constructor [domain, obj]. obj មានទិន្ន័យដូចជា
 per_page ត្រូវបានកំណត់ចំនួនស្រាប់ 10
+ប្រសិនបើ per_page ធំជាង 100 គឺយកតម្លៃត្រឹម 100 ប៉ុណ្ណោះ
 api default wp-json. យើងក៏អាចផ្លាស់ប្ដូរប្រើ ?rest_route=
 
 - Recent Post [recent] (page, per_page). ដើម្បីទាញយកព័ត៌មានដែលបាន Post ចុងក្រោយ
@@ -83,12 +84,23 @@ async function run1() {
 run1();
 ```
 
-Get Post by multi Tags
+Get Post by tag
 ```javascript
 import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
-  const res = await wpJson.post("429,618", 1, 20).then(res => { return res; });
+  const res = await wpJson.tags("429", 1, 20).then(res => { return res; });
+};
+
+run1();
+```
+
+Get Post by multi tags
+```javascript
+import WPAPI from "wp-json";
+async function run1() {
+  const wpJson = new WPAPI("postnews.com.kh");
+  const res = await wpJson.tags([429,618], 1, 20).then(res => { return res; });
 };
 
 run1();
