@@ -1,12 +1,11 @@
 {
   "name": "wp-json",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "WP-JSON API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "node test/posts.js",
-    "test:ts": "ts-node test/post.ts",
+    "test": "tsc && ts-node test/post.ts",
     "build": "tsc && tslint -c tslint.json -p tsconfig.json"
   },
   "author": "Kaing Dara",

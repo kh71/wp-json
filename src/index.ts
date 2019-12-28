@@ -11,7 +11,7 @@ export default class WPAPI {
   private _api: string;
   constructor(domain: string, per_page: number = 10, api: string = "wp-json") {
     this.domain = domain;
-    this.per_page = per_page || 10;
+    this.per_page = per_page > 100 ? 100 : per_page;
     switch (api) {
       case "?rest_route=":
       case "index.php?rest_route=":
@@ -25,37 +25,37 @@ export default class WPAPI {
     this._api = `https://${this.domain}/${this.api}/wp/v2/posts`;
   }
 
-  async recent(page: number, per_page: number = this.per_page) {
+  async recent(page: number = 1, per_page: number = this.per_page) {
     const query = {
-      page: page || this.page,
+      page: page,
       per_page: per_page || this.per_page
     };
     return await this._getRequest(query);
   }
 
-  async category(id: number, page: number, per_page: number = this.per_page) {
+  async category(id: number, page: number = 1, per_page: number = this.per_page) {
     const query = {
       categories: id,
-      page: page || this.page,
-      per_page: per_page
+      page: page,
+      per_page: per_page > 100 ? 100 : per_page
     };
     return await this._getRequest(query);
   }
 
-  async tags(id: number, page: number, per_page: number = this.per_page) {
+  async tags(id: any, page: number = 1, per_page: number = this.per_page) {
     const query = {
       tags: id,
-      page: page || this.page,
-      per_page: per_page
+      page: page,
+      per_page: per_page > 100 ? 100 : per_page
     };
     return await this._getRequest(query);
   }
 
-  async search(str: string, page: string, per_page: number = this.per_page) {
+  async search(str: string, page: number = 1, per_page: number = this.per_page) {
     const query = {
       search: str,
-      page: page || this.page,
-      per_page: per_page || this.per_page
+      page: page,
+      per_page: per_page > 100 ? 100 : per_page
     };
     return await this._getRequest(query);
   }
@@ -69,6 +69,7 @@ export default class WPAPI {
       action = typeof action === "object" ? "?" + queryString.stringify(action) : action;
     else
       action = typeof action === "object" ? "&" + queryString.stringify(action) : action;
+
     const api = `${this._api}/${action}`;
     const options = {
       uri: api,
