@@ -12,6 +12,8 @@ page ត្រូវបានកំណត់ចំនួនស្រាប់ 1
 per_page ធ្វើការយកពី obj Constructor ឬចំនួនស្រាប់ 10
 return {status: true, data: []}
 
+- Category [categories] (page, per_page). ដើម្បីទាញយកព័ត៌មានដែលបាន Categories ទាំងអស់
+
 - Category [category] (id, page, per_page). ដើម្បីទាញយកព័ត៌មានដែលបាន Post ពី Category
 id គឺជា id របស់ Category ដែលត្រូវធ្វើការទាញយក
 page ត្រូវបានកំណត់ចំនួនស្រាប់ 1
@@ -21,7 +23,9 @@ return {status: true, data: []}
 - Post (id). ដើម្បីទាញយកព័ត៌មានណាមួយតាមរយៈ id Post
 return {status: true, data: {}}
 
-- tags [tag] (id, page, per_page). ដើម្បីទាញយកព័ត៌មានដែលបាន Post ពី tag
+- tags [tags] (page, per_page). ដើម្បីទាញយកព័ត៌មានដែលបាន tags ទាំងអស់
+
+- tag [tag] (id, page, per_page). ដើម្បីទាញយកព័ត៌មានដែលបាន Post ពី tag
 id គឺជា id របស់ Tag ដែលត្រូវធ្វើការទាញយក អ្នកអាចធ្វើការជ្រើសរើសបានច្រើនក្នុងពេលតែមានតាមរយៈ [,]. ex. 7,1
 page ត្រូវបានកំណត់ចំនួនស្រាប់ 1
 per_page ធ្វើការយកពី obj Constructor ឬចំនួនស្រាប់ 10
@@ -78,18 +82,7 @@ Get Post by Tag
 import WPAPI from "wp-json";
 async function run1() {
   const wpJson = new WPAPI("postnews.com.kh");
-  const res = await wpJson.post("429", 1, 20).then(res => { return res; });
-};
-
-run1();
-```
-
-Get Post by tag
-```javascript
-import WPAPI from "wp-json";
-async function run1() {
-  const wpJson = new WPAPI("postnews.com.kh");
-  const res = await wpJson.tags("429", 1, 20).then(res => { return res; });
+  const res = await wpJson.tag("429", 1, 20).then(res => { return res; });
 };
 
 run1();

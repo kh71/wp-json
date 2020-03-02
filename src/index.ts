@@ -22,7 +22,7 @@ export default class WPAPI {
       default:
         this.api = "wp-json";
     }
-    this._api = `https://${this.domain}/${this.api}/wp/v2/posts`;
+    this._api = `https://${this.domain}/${this.api}/wp/v2`;
   }
 
   async recent(page: number = 1, per_page: number = this.per_page) {
@@ -30,7 +30,7 @@ export default class WPAPI {
       page: page,
       per_page: per_page || this.per_page
     };
-    return await this._getRequest(query);
+    return await this._getPosts(query);
   }
 
   async category(id: number, page: number = 1, per_page: number = this.per_page) {
@@ -39,16 +39,54 @@ export default class WPAPI {
       page: page,
       per_page: per_page > 100 ? 100 : per_page
     };
-    return await this._getRequest(query);
+    return await this._getPosts(query);
   }
 
-  async tags(id: any, page: number = 1, per_page: number = this.per_page) {
+  async tag(id: any, page: number = 1, per_page: number = this.per_page) {
     const query = {
       tags: id,
       page: page,
       per_page: per_page > 100 ? 100 : per_page
     };
-    return await this._getRequest(query);
+    return await this._getPosts(query);
+  }
+
+  async categories(page: number = 1, per_page: number = this.per_page) {
+    const query = {
+      page: page,
+      per_page: per_page > 100 ? 100 : per_page
+    };
+    let action = "";
+    if (this.api === "wp-json")
+      action = typeof query === "object" ? "?" + queryString.stringify(query) : query;
+    else
+      action = typeof query === "object" ? "&" + queryString.stringify(query) : query;
+    const api = `${this._api}/categories/${action}`;
+    const options = {
+      uri: api,
+      json: true // Automatically parses the JSON string in the response
+    };
+
+    return await this.rp(options);
+  }
+
+  async tags(page: number = 1, per_page: number = this.per_page) {
+    const query = {
+      page: page,
+      per_page: per_page > 100 ? 100 : per_page
+    };
+    let action = "";
+    if (this.api === "wp-json")
+      action = typeof query === "object" ? "?" + queryString.stringify(query) : query;
+    else
+      action = typeof query === "object" ? "&" + queryString.stringify(query) : query;
+    const api = `${this._api}/tags/${action}`;
+    const options = {
+      uri: api,
+      json: true // Automatically parses the JSON string in the response
+    };
+
+    return await this.rp(options);
   }
 
   async search(str: string, page: number = 1, per_page: number = this.per_page) {
@@ -57,24 +95,27 @@ export default class WPAPI {
       page: page,
       per_page: per_page > 100 ? 100 : per_page
     };
-    return await this._getRequest(query);
+    return await this._getPosts(query);
   }
 
   async post(id: number) {
-    return await this._getRequest(id);
+    return await this._getPosts(id);
   }
 
-  async _getRequest(action: any) {
+  async _getPosts(action: any) {
     if (this.api === "wp-json")
       action = typeof action === "object" ? "?" + queryString.stringify(action) : action;
     else
       action = typeof action === "object" ? "&" + queryString.stringify(action) : action;
-
-    const api = `${this._api}/${action}`;
+    const api = `${this._api}/posts/${action}`;
     const options = {
       uri: api,
       json: true // Automatically parses the JSON string in the response
     };
+    return await this.rp(options);
+  }
+
+  private async rp(options: any) {
     return await get(options)
       .then((res: any) => {
         // if (res.statusCode != 200) throw new WPError(res.statusCode);
