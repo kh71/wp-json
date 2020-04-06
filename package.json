@@ -1,6 +1,6 @@
 {
   "name": "wp-json",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "WP-JSON API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
   "author": "Kaing Dara",
   "license": "MIT",
   "dependencies": {
-    "query-string": "^6.11.0",
+    "query-string": "^6.11.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },
@@ -19,9 +19,9 @@
     "test": "test"
   },
   "devDependencies": {
-    "@types/request-promise": "^4.1.45",
-    "ts-node": "^8.6.2",
-    "tslint": "^6.0.0",
+    "@types/request-promise": "^4.1.46",
+    "ts-node": "^8.8.2",
+    "tslint": "^6.1.1",
     "typescript": "^3.8.3"
   },
   "repository": {
