@@ -1,31 +1,40 @@
 {
   "compilerOptions": {
-    "module": "CommonJs",
+    "module": "CommonJS",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "pretty": true,
-    "declaration": true,
     "removeComments": true,
-    "resolveJsonModule": true,
-    "types": [
-      "node"
-    ],
-    "target": "es2019",
-    "lib": [
-      "es2019",
-    ],
+    "allowUnreachableCode": false, // when product change false dev use true
     "strict": true,
+    "alwaysStrict": false,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "target": "ES2020",
+    "lib": ["ES7"],
+    // "rootDir": ".",
     "outDir": "./dist",
-    "rootDir": "src",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["./*"],
+      "@ctrl/*": ["./controllers/*"],
+      "@services/*": ["./services/*"],
+      "@cron/*": ["./cronjob/*"],
+      "@libs/*": ["./libs/*"],
+      "@mids/*": ["./middlewares/*"],
+      "@models/*": ["./models/*"],
+      "@routes/*": ["./routes/*"],
+      "@interfaces/*": ["./interfaces/*"]
+    }
   },
   "esModuleInterop": true,
   "allowSyntheticDefaultImports": true,
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "dist"
-  ]
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
